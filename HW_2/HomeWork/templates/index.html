@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1, h2 { color: #333; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f4f4f4; margin: 5px 0; padding: 10px; border-radius: 5px; }
+        a { text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+
+    <h2><a href="/students/">Студенты</a></h2>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }} {{ student.surname }} — {{ student.major }}, {{ student.year_of_study }} курс</li>
+        {% endfor %}
+    </ul>
+
+    <h2><a href="/courses/">Курсы</a></h2>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.title }} (Преподаватель: {{ course.author }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -9,3 +9,8 @@ def student_list(request):
 def course_list(request):
     courses = Course.objects.all()
     return render(request, "courses_list.html", {"courses": courses})
+
+def index(request):
+    students = Student.objects.all()
+    courses = Course.objects.all()
+    return render(request, "index.html", {"students": students, "courses": courses})
