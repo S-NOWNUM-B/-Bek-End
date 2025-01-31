@@ -1,3 +1,3 @@
 from django.db import models
-
-# Create your models here.
+from .students.models import Student
+from .subjects.models import Course
