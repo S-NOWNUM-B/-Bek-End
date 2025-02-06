@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ todo_list.title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>{{ todo_list.title }}</h1>
+        <p>{{ todo_list.description }}</p>
+
+        <h3>Tasks</h3>
+        <ul class="list-group">
+            {% for todo in todos %}
+                <li class="list-group-item">
+                    {{ todo.title }}
+                    <a href="{% url 'todo_edit' todo.id %}" class="btn btn-warning btn-sm float-end">Edit</a>
+                    <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger btn-sm float-end">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'todo_list_edit' todo_list.id %}" class="btn btn-primary mt-3">Edit Todo List</a>
+    </div>
+</body>
+</html>
