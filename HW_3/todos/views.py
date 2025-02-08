@@ -25,7 +25,6 @@ def todo_delete(request, id):
     todo.delete()
     return redirect('todo_list')
 
-
 def todo_edit(request, id):
     todo = get_object_or_404(Todo, id=id)
 
