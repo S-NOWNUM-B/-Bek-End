@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ todo.title }}</title>
+    <link rel="stylesheet" href="{% static 'todos/css/bootstrap.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">{{ todo.title }}</h1>
+        <p><strong>Описание:</strong> {{ todo.description }}</p>
+        <p><strong>Дата выполнения:</strong> {{ todo.due_date }}</p>
+        <p><strong>Статус:</strong> {% if todo.status %} Выполнено {% else %} Не выполнено {% endif %}</p>
+        <a href="{% url 'todos_list' %}" class="btn btn-secondary">Назад</a>
+    </div>
+    <script src="{% static 'todos/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

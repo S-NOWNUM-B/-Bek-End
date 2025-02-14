@@ -1,15 +1,23 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>No main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать задачу</title>
+    <link rel="stylesheet" href="{% static 'todos/css/bootstrap.css' %}">
 </head>
 <body>
-<h1>Создать новую задачу</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Сохранить</button>
-</form>
+    <div class="container">
+        <h1 class="my-4">Создать новую задачу</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+        <a href="{% url 'todos_list' %}" class="btn btn-secondary mt-3">Назад</a>
+    </div>
+    <script src="{% static 'todos/js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>
