@@ -7,7 +7,7 @@ def todos_list(request):
     return render(request, 'todos/todos_list.html', {'todos': todos})
 
 def todo_detail(request, id):
-    todo = Todo.objects.all()
+    todo = get_object_or_404(Todo, id=id)
     return render(request, 'todos/todo_detail.html', {'todo': todo})
 
 def todo_create(request):
