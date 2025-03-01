@@ -1,0 +1,28 @@
+{% extends 'todos/base.html' %}
+{% block title %}Редактирование: {{ todo.title }}{% endblock %}
+{% block content %}
+<h2>Редактирование задачи: {{ todo.title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input type="text" name="title" class="form-control" value="{{ todo.title }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <input type="text" name="description" class="form-control" value="{{ todo.description }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Дата выполнения</label>
+        <input type="date" name="due_date" class="form-control" value="{{ todo.due_date|date:'Y-m-d' }}" required>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="status" class="form-check-input" {% if todo.status %}checked{% endif %}>
+        <label class="form-check-label">Выполнено</label>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+
+<a href="{% url 'todo_list_detail' todo.todo_list.id %}" class="btn btn-secondary mt-3">Назад</a>
+{% endblock %}

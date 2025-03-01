@@ -1,0 +1,20 @@
+{% extends 'todos/base.html' %}
+{% block title %}Редактирование: {{ todo_list.title }}{% endblock %}
+{% block content %}
+<h2>Редактирование списка: {{ todo_list.title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input type="text" name="title" class="form-control" value="{{ todo_list.title }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <input type="text" name="description" class="form-control" value="{{ todo_list.description }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+
+<a href="{% url 'todo_lists' %}" class="btn btn-secondary mt-3">Назад</a>
+{% endblock %}
