@@ -21,7 +21,19 @@
         <input type="checkbox" name="status" class="form-check-input" {% if todo.status %}checked{% endif %}>
         <label class="form-check-label">Выполнено</label>
     </div>
-    <button type="submit" class="btn btn-success">Сохранить</button>
+
+    <div class="mb-3">
+        <label class="form-label">Переместить в список</label>
+        <select name="todo_list" class="form-control">
+            {% for list in todo_lists %}
+                <option value="{{ list.id }}" {% if list.id == todo.todo_list.id %}selected{% endif %}>
+                    {{ list.title }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 
 <a href="{% url 'todo_list_detail' todo.todo_list.id %}" class="btn btn-secondary mt-3">Назад</a>

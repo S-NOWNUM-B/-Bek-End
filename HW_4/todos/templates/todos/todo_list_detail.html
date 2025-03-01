@@ -19,6 +19,14 @@
         <label class="form-label">Дата выполнения</label>
         <input type="date" name="due_date" class="form-control" required>
     </div>
+    <div class="mb-3">
+        <label class="form-label">Выбрать список</label>
+        <select name="todo_list" class="form-control" required>
+            {% for list in todo_lists %}
+                <option value="{{ list.id }}">{{ list.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
 
