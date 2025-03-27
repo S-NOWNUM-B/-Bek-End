@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}{{ todo_list.title }}{% endblock %}
+{% block content %}
+<h2>{{ todo_list.title }}</h2>
+<p>{{ todo_list.description }}</p>
+
+<h3 class="mt-4">Добавить задачу</h3>
+<form method="post" class="mb-4">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input type="text" name="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <input type="text" name="description" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Дата выполнения</label>
+        <input type="date" name="due_date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Выбрать список</label>
+        <select name="todo_list" class="form-control" required>
+            {% for list in todo_lists %}
+                <option value="{{ list.id }}">{{ list.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+<h3>Задачи</h3>
+<ul class="list-group">
+    {% for todo in todo_list.todos.all %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ todo.title }}</strong> ({{ todo.due_date }}) <br>
+            <small>{{ todo.description }}</small>
+            {% if todo.status %}
+            <span class="badge bg-success">Выполнено</span>
+            {% else %}
+            <span class="badge bg-warning">Не выполнено</span>
+            {% endif %}
+        </div>
+        <div>
+            <a href="{% url 'edit_todo' todo.id %}" class="btn btn-sm btn-warning">Редактировать</a>
+            <a href="{% url 'delete_todo' todo.id %}" class="btn btn-sm btn-danger">Удалить</a>
+        </div>
+    </li>
+    {% empty %}
+    <p>Пока нет задач...</p>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'todo_lists' %}" class="btn btn-secondary mt-3">Назад</a>
+{% endblock %}
